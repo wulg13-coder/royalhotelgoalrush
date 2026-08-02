@@ -1,7 +1,5 @@
+import ComingSoon from "../leaderboard/components/ComingSoon";
+
 export default function StatisticsPage() {
-  return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Statistics TEST SUCCESS!</h1>
-    </main>
-  );
+  return <ComingSoon title="Statistics" />;
 }
