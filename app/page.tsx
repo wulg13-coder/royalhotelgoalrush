@@ -26,6 +26,9 @@ export default function Home() {
         <h1 className="text-6xl md:text-7xl font-black tracking-wide">
           GOAL RUSH
         </h1>
+        <p className="mt-3 text-center text-2xl font-bold tracking-[0.35em] text-yellow-400">
+          EVERY. GOAL. COUNTS.
+        </p>
 
         <p className="mt-2 text-xl font-semibold text-yellow-400">
           Season 2026/27

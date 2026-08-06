@@ -19,7 +19,11 @@ export const metadata: Metadata = {
   },
   description:
     "Official Royal Hotel Goal Rush website featuring the live leaderboard, statistics, team search and competition information.",
-};
+icons:{
+  icon:"/images/rh-diamond.jpg",
+  shortcut:"/images/rh-diamond.jpg",
+  apple:"/images/rh-diamond.jpg"
+}};
 
 export default function RootLayout({
   children,
