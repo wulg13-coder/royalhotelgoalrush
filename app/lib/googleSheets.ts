@@ -70,10 +70,20 @@ export async function getRanking() {
 
   const rows = await sheet.getRows();
 
-  return rows.map(row => ({
-    POSITION: row.get("POSITION"),
-    PLAYER: row.get("PLAYER"),
-    "TOTAL POINTS": Number(row.get("TOTAL POINTS") || 0),
+ return rows.map((row) => ({
+  POSITION: Number(row.get("POSITION")) || 0,
+  PLAYER: row.get("PLAYER"),
+  "TOTAL POINTS": Number(row.get("TOTAL POINTS")) || 0,
+  "TEAM 1": row.get("TEAM 1"),
+  "GOALS 1": Number(row.get("GOAL 1")) || 0,
+  "TEAM 2": row.get("TEAM 2"),
+  "GOALS 2": Number(row.get("GOAL 2")) || 0,
+  "TEAM 3": row.get("TEAM 3"),
+  "GOALS 3": Number(row.get("GOAL 3")) || 0,
+  "TEAM 4": row.get("TEAM 4"),
+  "GOALS 4": Number(row.get("GOAL 4")) || 0,
+
+  "LAST UPDATED": row.get("LAST UPDATED"),
   }));
 }
 

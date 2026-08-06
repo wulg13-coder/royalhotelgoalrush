@@ -3,9 +3,10 @@
 import { useState } from "react";
 
 type LeaderboardRow = {
-  entryId: string;
+  position: number;
   player: string;
   totalPoints: number;
+
   team1: string;
   goals1: number;
   team2: string;
@@ -41,7 +42,7 @@ export default function LeaderboardTable({ leaderboard }: Props) {
         const expanded = expandedPlayer === row.player;
 
         return (
-          <div key={row.entryId}>
+          <div key={row.player}>
 
             <button
               onClick={() => togglePlayer(row.player)}
@@ -77,28 +78,17 @@ export default function LeaderboardTable({ leaderboard }: Props) {
             </button>
 
             {expanded && (
-              <div className="bg-black px-16 py-5">
-
-                <div className="flex justify-between py-2">
+              <div className="bg-zinc-800 px-8 py-5 border-b border-yellow-500/20">
+                <div className="grid grid-cols-2 gap-y-2 text-lg">
                   <span>{row.team1}</span>
-                  <span>{row.goals1}</span>
-                </div>
-
-                <div className="flex justify-between py-2">
+                  <span className="text-right font-bold">{row.goals1}</span>
                   <span>{row.team2}</span>
-                  <span>{row.goals2}</span>
-                </div>
-
-                <div className="flex justify-between py-2">
+                  <span className="text-right font-bold">{row.goals2}</span>
                   <span>{row.team3}</span>
-                  <span>{row.goals3}</span>
-                </div>
-
-                <div className="flex justify-between py-2">
+                  <span className="text-right font-bold">{row.goals3}</span>
                   <span>{row.team4}</span>
-                  <span>{row.goals4}</span>
+                  <span className="text-right font-bold">{row.goals4}</span>
                 </div>
-
               </div>
             )}
 

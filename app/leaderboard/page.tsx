@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { getEngine } from "../lib/googleSheets";
+import { getRanking} from "../lib/googleSheets";
 import LeaderboardTable from "./LeaderboardTable";
 import Image from "next/image";
 export default async function LeaderboardPage() {
-  const rows = await getEngine();
-  const rawlastUpdated = rows[0]?.get("LAST UPDATED");;
+  const rows = await getRanking();
+  const rawlastUpdated = rows[0]?.["LAST UPDATED"] ?? null;
   const lastUpdated = rawlastUpdated ? new Date(rawlastUpdated).toLocaleString("en-GB", {
     day: "numeric",
     month: "short",
@@ -13,26 +13,22 @@ export default async function LeaderboardPage() {
     minute: "2-digit",
   }) : "Not available";
 
-  const leaderboard = rows
-    .filter((row: any) => row.get("PLAYER"))
-    .map((row: any) => ({
-      entryId: row.get("ENTRY ID"),
-      player: row.get("PLAYER"),
-      totalPoints: Number(row.get("TOTAL POINTS") || 0),
+const leaderboard = rows
+  .filter((row: any) => row.PLAYER)
+  .map((row: any) => ({
+    position: Number(row.POSITION),
+    player: row.PLAYER,
+    totalPoints: Number(row["TOTAL POINTS"]),
 
-      team1: row.get("TEAM 1"),
-      goals1: row.get("GOALS 1"),
-
-      team2: row.get("TEAM 2"),
-      goals2: row.get("GOALS 2"),
-
-      team3: row.get("TEAM 3"),
-      goals3: row.get("GOALS 3"),
-
-      team4: row.get("TEAM 4"),
-      goals4: row.get("GOALS 4"),
-    }))
-    .sort((a, b) => b.totalPoints - a.totalPoints);
+    team1: row["TEAM 1"],
+    goals1: Number(row["GOALS 1"]),
+    team2: row["TEAM 2"],
+    goals2: Number(row["GOALS 2"]),
+    team3: row["TEAM 3"],
+    goals3: Number(row["GOALS 3"]),
+    team4: row["TEAM 4"],
+    goals4: Number(row["GOALS 4"]),
+  }));
 
   return (
     <main className="min-h-screen bg-black text-white px-6 py-10">
