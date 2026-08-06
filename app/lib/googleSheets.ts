@@ -62,15 +62,19 @@ export async function getLeaderboard() {
 export async function getRanking() {
   const doc = await getSpreadsheet();
 
-  const sheet = doc.sheetsByTitle["RANKING"];
+  const sheet = doc.sheetsByTitle["RANKINGS"];
 
   if (!sheet) {
-    throw new Error("RANKING sheet not found");
+    throw new Error("RANKINGS sheet not found");
   }
 
   const rows = await sheet.getRows();
 
-  return rows;
+  return rows.map(row => ({
+    POSITION: row.get("POSITION"),
+    PLAYER: row.get("PLAYER"),
+    "TOTAL POINTS": Number(row.get("TOTAL POINTS") || 0),
+  }));
 }
 
 export async function getEngine() {

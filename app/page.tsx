@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { getRanking } from "@/app/lib/googleSheets";
 
-export default function Home() {
+export default async function Home() {
+  const ranking = await getRanking();
+  const topThree = ranking.slice(0, 3);
+
   return (
     <main className="min-h-screen bg-black text-white">
 
@@ -88,28 +92,7 @@ export default function Home() {
             </div>
           </a>
 
-          <a
-            href="/statistics"
-            className="block rounded-3xl border border-yellow-500/30 bg-[#111111] p-6 transition hover:bg-[#1b1b1b]"
-          >
-            <div className="flex items-center justify-between">
-
-              <div>
-                <div className="text-4xl">📊</div>
-
-                <h2 className="mt-3 text-2xl font-bold">
-                  Statistics
-                </h2>
-
-                <p className="mt-1 text-zinc-400">
-                  Goals, teams & records
-                </p>
-              </div>
-
-              <span className="text-2xl text-zinc-500">→</span>
-
-            </div>
-          </a>
+       
 
           <a
             href="/information"
@@ -153,13 +136,16 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 <span className="text-3xl">🥇</span>
                 <div>
-                  <p className="font-semibold">Player Name</p>
+                  <p className="font-semibold">
+                    {topThree[0]?.PLAYER === "#N/A"
+                    ? "Waiting for kick off . . ."
+                    : topThree[0]?.PLAYER}</p>
                   <p className="text-sm text-zinc-400">1st Place</p>
                 </div>
               </div>
 
               <span className="text-xl font-bold text-yellow-400">
-                248 pts
+                {topThree[0]?.["TOTAL POINTS"]} pts
               </span>
             </div>
 
@@ -167,13 +153,13 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 <span className="text-3xl">🥈</span>
                 <div>
-                  <p className="font-semibold">Player Name</p>
+                  <p className="font-semibold">{topThree[1]?.PLAYER}</p>
                   <p className="text-sm text-zinc-400">2nd Place</p>
                 </div>
               </div>
 
               <span className="text-xl font-bold text-yellow-400">
-                241 pts
+                {topThree[1]?.["TOTAL POINTS"]} pts
               </span>
             </div>
 
@@ -181,13 +167,13 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 <span className="text-3xl">🥉</span>
                 <div>
-                  <p className="font-semibold">Player Name</p>
+                  <p className="font-semibold">{topThree[2]?.PLAYER}</p>
                   <p className="text-sm text-zinc-400">3rd Place</p>
                 </div>
               </div>
 
               <span className="text-xl font-bold text-yellow-400">
-                237 pts
+                {topThree[2]?.["TOTAL POINTS"]} pts
               </span>
             </div>
 
