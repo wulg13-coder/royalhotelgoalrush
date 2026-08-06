@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { getRanking} from "../lib/googleSheets";
+import { getRanking, getEngine} from "../lib/googleSheets";
 import LeaderboardTable from "./LeaderboardTable";
 import Image from "next/image";
 export default async function LeaderboardPage() {
-  const rows = await getRanking();
-  const rawlastUpdated = rows[0]?.["LAST UPDATED"] ?? null;
+ const rows = await getRanking();
+ const engine = await getEngine();
+ const rawlastUpdated = engine[0]?.get("LAST UPDATED") ??  null;
   const lastUpdated = rawlastUpdated ? new Date(rawlastUpdated).toLocaleString("en-GB", {
     day: "numeric",
     month: "short",
