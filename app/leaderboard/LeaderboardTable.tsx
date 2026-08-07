@@ -9,12 +9,16 @@ type LeaderboardRow = {
 
   team1: string;
   goals1: number;
+  points1: number;
   team2: string;
   goals2: number;
+  points2: number;
   team3: string;
   goals3: number;
+  points3: number;
   team4: string;
   goals4: number;
+  points4: number;
 };
 
 type Props = {
@@ -32,11 +36,13 @@ export default function LeaderboardTable({ leaderboard }: Props) {
     <div className="overflow-hidden rounded-2xl border border-yellow-500 bg-zinc-900 shadow-2xl">
 
       {/* Header */}
-      <div className="sticky top-0 z-20 grid grid-cols-[90px_1fr_120px] bg-yellow-500 px-6 py-4 font-bold uppercase text-black">
-        <div className="text-center">Pos</div>
-        <div className="pl-8">Player</div>
-        <div className="text-right">Points</div>
+
+      <div className="grid grid-cols-[50px_minmax(0,1fr)_60px] bg-yellow-500 text-black font-bold">
+        <div className="text-center">POS</div>
+        <div className="text-center">PLAYER</div>
+        <div className="text-right">POINTS</div>  
       </div>
+      
 
       {leaderboard.map((row, index) => {
         const expanded = expandedPlayer === row.player;
@@ -46,7 +52,7 @@ export default function LeaderboardTable({ leaderboard }: Props) {
 
             <button
               onClick={() => togglePlayer(row.player)}
-              className={`grid w-full grid-cols-[90px_1fr_120px] items-center px-6 py-5 border-b border-zinc-800 text-left transition hover:bg-zinc-800 cursor-pointer ${
+              className={`grid w-full grid-cols-[50px_minmax(0,1fr)_60px] items-center px-4 py-5 cursor pointer ${
                 index === 0
                   ? "bg-yellow-500/10"
                   : index === 1
@@ -67,27 +73,38 @@ export default function LeaderboardTable({ leaderboard }: Props) {
                   : index + 1}
               </div>
 
-              <div className="pl-8 text-xl font-bold">
+              <div className="min-w-0 pl-4 text-center text-lg font-bold">
                 {row.player}
               </div>
 
               <div className="text-right text-2xl font-black text-yellow-400">
-                {row.totalPoints}
+              {row.totalPoints}
               </div>
 
             </button>
 
             {expanded && (
               <div className="bg-zinc-800 px-8 py-5 border-b border-yellow-500/20">
-                <div className="grid grid-cols-2 gap-y-2 text-lg">
-                  <span>{row.team1}</span>
-                  <span className="text-right font-bold">{row.goals1}</span>
-                  <span>{row.team2}</span>
-                  <span className="text-right font-bold">{row.goals2}</span>
-                  <span>{row.team3}</span>
-                  <span className="text-right font-bold">{row.goals3}</span>
-                  <span>{row.team4}</span>
-                  <span className="text-right font-bold">{row.goals4}</span>
+                <div className="grid grid-cols-[1fr_80px_80px] gap-x-6 gap-y-2 text-lg">
+                  <span className="font-bold text-yellow-400">TEAM</span>
+<span className="text-right font-bold text-yellow-400">GOALS</span>
+<span className="text-right font-bold text-yellow-400">POINTS</span>
+
+<span>{row.team1}</span>
+<span className="text-right">{row.goals1}</span>
+<span className="text-right">{row.points1}</span>
+
+<span>{row.team2}</span>
+<span className="text-right">{row.goals2}</span>
+<span className="text-right">{row.points2}</span>
+
+<span>{row.team3}</span>
+<span className="text-right">{row.goals3}</span>
+<span className="text-right">{row.points3}</span>
+
+<span>{row.team4}</span>
+<span className="text-right">{row.goals4}</span>
+<span className="text-right">{row.points4}</span>
                 </div>
               </div>
             )}

@@ -14,22 +14,7 @@ export default async function LeaderboardPage() {
     minute: "2-digit",
   }) : "Not available";
 
-const leaderboard = rows
-  .filter((row: any) => row.PLAYER)
-  .map((row: any) => ({
-    position: Number(row.POSITION),
-    player: row.PLAYER,
-    totalPoints: Number(row["TOTAL POINTS"]),
-
-    team1: row["TEAM 1"],
-    goals1: Number(row["GOALS 1"]),
-    team2: row["TEAM 2"],
-    goals2: Number(row["GOALS 2"]),
-    team3: row["TEAM 3"],
-    goals3: Number(row["GOALS 3"]),
-    team4: row["TEAM 4"],
-    goals4: Number(row["GOALS 4"]),
-  }));
+const leaderboard = rows;
 
   return (
     <main className="min-h-screen bg-black text-white px-6 py-10">

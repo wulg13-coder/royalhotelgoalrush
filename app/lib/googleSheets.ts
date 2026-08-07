@@ -71,19 +71,28 @@ export async function getRanking() {
   const rows = await sheet.getRows();
 
  return rows.map((row) => ({
-  POSITION: Number(row.get("POSITION")) || 0,
-  PLAYER: row.get("PLAYER"),
-  "TOTAL POINTS": Number(row.get("TOTAL POINTS")) || 0,
-  "TEAM 1": row.get("TEAM 1"),
-  "GOALS 1": Number(row.get("GOAL 1")) || 0,
-  "TEAM 2": row.get("TEAM 2"),
-  "GOALS 2": Number(row.get("GOAL 2")) || 0,
-  "TEAM 3": row.get("TEAM 3"),
-  "GOALS 3": Number(row.get("GOAL 3")) || 0,
-  "TEAM 4": row.get("TEAM 4"),
-  "GOALS 4": Number(row.get("GOAL 4")) || 0,
+  position: Number(row.get("POSITION")) || 0,
+  player: row.get("PLAYER"),
+  totalPoints: Number(row.get("TOTAL POINTS")) || 0,
 
-  "LAST UPDATED": row.get("LAST UPDATED"),
+team1: row.get("TEAM 1"),
+goals1: Number(row.get("GOALS 1")) || 0,
+points1: (Number(row.get("GOALS 1")) || 0) * 1,
+
+team2: row.get("TEAM 2"),
+goals2: Number(row.get("GOALS 2")) || 0,
+points2: (Number(row.get("GOALS 2")) || 0) * 2,
+
+team3: row.get("TEAM 3"),
+goals3: Number(row.get("GOALS 3")) || 0,
+points3: (Number(row.get("GOALS 3")) || 0) * 2,
+
+team4: row.get("TEAM 4"),
+goals4: Number(row.get("GOALS 4")) || 0,
+points4: (Number(row.get("GOALS 4")) || 0) * 3,
+
+lastUpdated: row.get("LAST UPDATED"),
+
   }));
 }
 
