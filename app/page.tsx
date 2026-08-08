@@ -137,15 +137,15 @@ export default async function Home() {
                 <span className="text-3xl">🥇</span>
                 <div>
                   <p className="font-semibold">
-                    {topThree[0]?.PLAYER === "#N/A"
+                    {topThree[0]?.player === "#N/A"
                     ? "Waiting for kick off . . ."
-                    : topThree[0]?.PLAYER}</p>
+                    : topThree[0]?.player}</p>
                   <p className="text-sm text-zinc-400">1st Place</p>
                 </div>
               </div>
 
               <span className="text-xl font-bold text-yellow-400">
-                {topThree[0]?.["TOTAL POINTS"]} pts
+                {topThree[0]?.["totalPoints"]} pts
               </span>
             </div>
 
@@ -153,13 +153,13 @@ export default async function Home() {
               <div className="flex items-center gap-3">
                 <span className="text-3xl">🥈</span>
                 <div>
-                  <p className="font-semibold">{topThree[1]?.PLAYER}</p>
+                  <p className="font-semibold">{topThree[1]?.player}</p>
                   <p className="text-sm text-zinc-400">2nd Place</p>
                 </div>
               </div>
 
               <span className="text-xl font-bold text-yellow-400">
-                {topThree[1]?.["TOTAL POINTS"]} pts
+                {topThree[1]?.["totalPoints"]} pts
               </span>
             </div>
 
@@ -167,13 +167,13 @@ export default async function Home() {
               <div className="flex items-center gap-3">
                 <span className="text-3xl">🥉</span>
                 <div>
-                  <p className="font-semibold">{topThree[2]?.PLAYER}</p>
+                  <p className="font-semibold">{topThree[2]?.player}</p>
                   <p className="text-sm text-zinc-400">3rd Place</p>
                 </div>
               </div>
 
               <span className="text-xl font-bold text-yellow-400">
-                {topThree[2]?.["TOTAL POINTS"]} pts
+                {topThree[2]?.["totalPoints"]} pts
               </span>
             </div>
 
