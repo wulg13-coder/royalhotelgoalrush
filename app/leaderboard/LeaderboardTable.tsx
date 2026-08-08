@@ -92,7 +92,7 @@ export default function LeaderboardTable({ leaderboard }: Props) {
 
             {expanded && (
               <div className="bg-zinc-800 px-8 py-5 border-b border-yellow-500/20">
-                <div className="grid grid-cols-[1fr_80px_80px] gap-x-6 gap-y-2 text-lg">
+                <div className="grid grid-cols-[1fr_60px_60px] gap-x-3 gap-y-1 text-sm">
                   <span className="font-bold text-yellow-400">TEAM</span>
 <span className="text-right font-bold text-yellow-400">GOALS</span>
 <span className="text-right font-bold text-yellow-400">POINTS</span>
