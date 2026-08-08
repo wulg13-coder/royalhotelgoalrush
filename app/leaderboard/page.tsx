@@ -2,6 +2,9 @@ import Link from "next/link";
 import { getRanking, getEngine} from "../lib/googleSheets";
 import LeaderboardTable from "./LeaderboardTable";
 import Image from "next/image";
+
+export const dynamic = "force-dynamic";
+
 export default async function LeaderboardPage() {
  const rows = await getRanking();
  const engine = await getEngine();
