@@ -28,7 +28,10 @@ export async function getPlayers() {
 
   const rows = await sheet.getRows();
 
-return rows;
+return rows.filter((row) => {
+  const player = row.get("PLAYER");
+  return player && player.trim() !== "";
+})
 }
 
 export async function getTeams() {
