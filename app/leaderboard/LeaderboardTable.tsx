@@ -47,12 +47,19 @@ export default function LeaderboardTable({ leaderboard }: Props) {
       {leaderboard.map((row, index) => {
         const expanded = expandedPlayer === row.player;
 
+        const position =
+        leaderboard.filter(
+          (player) => player.totalPoints > row.totalPoints
+        ).length  + 1;
+        
+
         return (
           <div key={row.player}>
 
             <button
               onClick={() => togglePlayer(row.player)}
-              className={`grid w-full grid-cols-[50px_minmax(0,1fr)_60px] items-center px-4 py-5 cursor pointer ${
+              style={{ cursor: "pointer"}}
+              className={`grid w-full grid-cols-[35px_minmax(0,1fr)_45px] items-center border-b border-yellow-500/20 px-2 py-3 text-lg font-medium transition-colors duration-200 ${
                 index === 0
                   ? "bg-yellow-500/10"
                   : index === 1
@@ -64,13 +71,13 @@ export default function LeaderboardTable({ leaderboard }: Props) {
             >
 
               <div className="flex justify-center text-2xl font-bold">
-                {index === 0
-                  ? "🥇"
-                  : index === 1
-                  ? "🥈"
-                  : index === 2
-                  ? "🥉"
-                  : index + 1}
+               {position <=3
+               ? position === 1
+                 ? "🥇"
+                 : position === 2
+                   ? "🥈"
+                   : "🥉"
+               : position}
               </div>
 
               <div className="min-w-0 pl-4 text-center text-lg font-bold">

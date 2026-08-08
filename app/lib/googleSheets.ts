@@ -70,30 +70,48 @@ export async function getRanking() {
 
   const rows = await sheet.getRows();
 
- return rows.map((row) => ({
-  position: Number(row.get("POSITION")) || 0,
-  player: row.get("PLAYER"),
-  totalPoints: Number(row.get("TOTAL POINTS")) || 0,
+  const leaderboard = rows.map((row) => ({
+    player: row.get("PLAYER"),
+    totalPoints: Number(row.get("TOTAL POINTS")) || 0,
 
-team1: row.get("TEAM 1"),
-goals1: Number(row.get("GOALS 1")) || 0,
-points1: (Number(row.get("GOALS 1")) || 0) * 1,
+    team1: row.get("TEAM 1"),
+    goals1: Number(row.get("GOALS 1")) || 0,
+    points1: (Number(row.get("GOALS 1")) || 0) * 1,
 
-team2: row.get("TEAM 2"),
-goals2: Number(row.get("GOALS 2")) || 0,
-points2: (Number(row.get("GOALS 2")) || 0) * 2,
+    team2: row.get("TEAM 2"),
+    goals2: Number(row.get("GOALS 2")) || 0,
+    points2: (Number(row.get("GOALS 2")) || 0) * 2,
 
-team3: row.get("TEAM 3"),
-goals3: Number(row.get("GOALS 3")) || 0,
-points3: (Number(row.get("GOALS 3")) || 0) * 2,
+    team3: row.get("TEAM 3"),
+    goals3: Number(row.get("GOALS 3")) || 0,
+    points3: (Number(row.get("GOALS 3")) || 0) * 2,
 
-team4: row.get("TEAM 4"),
-goals4: Number(row.get("GOALS 4")) || 0,
-points4: (Number(row.get("GOALS 4")) || 0) * 3,
+    team4: row.get("TEAM 4"),
+    goals4: Number(row.get("GOALS 4")) || 0,
+    points4: (Number(row.get("GOALS 4")) || 0) * 3,
 
-lastUpdated: row.get("LAST UPDATED"),
-
+    lastUpdated: row.get("LAST UPDATED"),
   }));
+
+  // Sort highest points first
+  leaderboard.sort((a, b) => b.totalPoints - a.totalPoints);
+
+  // Competition ranking:
+  // 16, 16, 16, 14, 14, 10
+  //  1,  1,  1,  4,  4, 10
+  return leaderboard.map((row, index, sorted) => {
+    const position =
+      index > 0 && sorted[index - 1].totalPoints === row.totalPoints
+        ? sorted.findIndex(
+            (item) => item.totalPoints === row.totalPoints
+          ) + 1
+        : index + 1;
+
+    return {
+      position,
+      ...row,
+    };
+  });
 }
 
 export async function getEngine() {
