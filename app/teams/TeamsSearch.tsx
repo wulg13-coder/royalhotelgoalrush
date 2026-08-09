@@ -58,14 +58,7 @@ export default function TeamsSearch({ players }: Props) {
     <main className="min-h-screen bg-black text-white px-6 py-10">
       <div className="mx-auto max-w-md">
 
-        <Link
-          href="/"
-          className="mb-8 inline-block text-yellow-400 transition-all duration-200 hover:scale-[1.02] hover:text-yellow-300"
-        >
-          ← Back to Home
-        </Link>
-
-        <h1 className="text-center text-4xl font-bold text-yellow-400">
+       <h1 className="text-center text-4xl font-bold text-yellow-400">
           Find My Teams
         </h1>
 

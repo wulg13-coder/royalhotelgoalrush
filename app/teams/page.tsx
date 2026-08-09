@@ -1,6 +1,7 @@
 import { getEngine } from "../lib/googleSheets";
 import TeamsSearch from "./TeamsSearch";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function TeamsPage() {
   const rows = await getEngine();
@@ -34,6 +35,13 @@ export default async function TeamsPage() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-10">
       <div className="mx-auto max-w-4xl">
+
+         <Link
+          href="/"
+          className="mb-8 inline-block text-yellow-400 transition-all duration-200 hover:scale-[1.02] hover:text-yellow-300"
+        >
+          ← Back to Home
+        </Link>
 
         <div className="mb-8 flex justify-center">
           <Image
