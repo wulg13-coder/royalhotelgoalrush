@@ -1,5 +1,6 @@
 import { getEngine } from "../lib/googleSheets";
 import TeamsSearch from "./TeamsSearch";
+import Image from "next/image";
 
 export default async function TeamsPage() {
   const rows = await getEngine();
@@ -30,5 +31,22 @@ export default async function TeamsPage() {
     }))
     .filter((player: any) => player.player);
 
-  return <TeamsSearch players={players} />;
+  return (
+    <main className="min-h-screen bg-black text-white px-6 py-10">
+      <div className="mx-auto max-w-4xl">
+
+        <div className="mb-8 flex justify-center">
+          <Image
+            src="/images/royal-hotel-logo-cropped.jpg"
+            alt="Royal Hotel"
+            width={180}
+            height={80}
+            className="h-auto w-[300px] - object-contain"
+          />
+        </div>
+
+        <TeamsSearch players={players} />
+      </div>
+    </main>
+  );
 }
