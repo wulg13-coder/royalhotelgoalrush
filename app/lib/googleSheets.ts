@@ -71,7 +71,9 @@ export async function getRanking() {
 
   const rows = await sheet.getRows();
 
-  const leaderboard = rows.map((row) => ({
+  const leaderboard = rows
+  .filter((row) => row.get("PLAYER"))
+  .map((row) => ({
     player: row.get("PLAYER"),
     totalPoints: Number(row.get("TOTAL POINTS")) || 0,
 
