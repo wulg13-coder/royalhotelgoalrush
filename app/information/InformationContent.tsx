@@ -238,19 +238,7 @@ export default function InformationContent({ teams }: Props) {
             </div>
           </div>
 
-          {/* FAQ */}
-
-          <div className="rounded-xl border border-yellow-500 bg-zinc-900 p-6 opacity-60">
-            <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold">
-                ❓ Frequently Asked Questions
-              </span>
-
-              <span>Coming Soon</span>
-            </div>
-          </div>
-
-          {/* Charity */}
+{/* Charity */}
 
           <div className="rounded-xl border border-yellow-500 bg-zinc-900 p-6 opacity-60">
             <div className="flex items-center justify-between">
